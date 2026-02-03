@@ -1,0 +1,27 @@
+# Core Django and DRF
+Django>=5.0,<6.0
+djangorestframework>=3.14,<4.0
+
+# JWT Authentication
+djangorestframework-simplejwt>=5.3,<6.0
+
+# CORS headers for React frontend
+django-cors-headers>=4.3,<5.0
+
+# Environment variables
+python-decouple>=3.8
+
+# Database (PostgreSQL for production - install separately when needed)
+# psycopg2-binary==2.9.9
+
+# Image handling (optional for now - can add later if needed)
+# Pillow>=10.0
+
+# API documentation
+drf-yasg>=1.21,<2.0
+
+# Utilities
+python-dateutil>=2.8
+
+# For data validation
+validators>=0.22
