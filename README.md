@@ -4,11 +4,11 @@ A comprehensive security awareness training platform designed for organizations 
 
 ## 📋 Table of Contents
 
-- [Overview](#Overview)
-- [Features](#Features)
-- [Tech Stack](#Tech-Stack)
-- [Project Structure](#Project-Structure)
-- [Installation](#Installation)
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#️-tech-stack)
+- [Project Structure](#-project-structure)
+- [Installation](#-installation)
 
 
 
