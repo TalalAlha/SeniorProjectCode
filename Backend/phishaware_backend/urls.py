@@ -27,9 +27,11 @@ urlpatterns = [
 
     path('api/docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-
     path('api/v1/auth/', include('apps.accounts.urls')),
-
+    path('api/v1/companies/', include('apps.companies.urls')),
+    path('api/v1/campaigns/', include('apps.campaigns.urls')),
+    path('api/v1/simulations/', include('apps.simulations.urls'))
+    
 ]
 
 if settings.DEBUG:

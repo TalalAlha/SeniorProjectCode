@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="{{ language|default:'en' }}" dir="{% if language == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* RTL Support */
+        [dir="rtl"] {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+        }
+
+        /* Animation for warning icon */
+        @keyframes pulse-warning {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .pulse-warning {
+            animation: pulse-warning 2s ease-in-out infinite;
+        }
+
+        /* Gradient background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #fee2e2 0%, #fef3c7 50%, #fef9c3 100%);
+        }
+
+        /* Card shadow */
+        .card-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen py-8 px-4">
+    <div class="max-w-3xl mx-auto">
+
+        <!-- Warning Header Card -->
+        <div class="bg-red-600 rounded-t-2xl p-6 text-center card-shadow">
+            <div class="pulse-warning inline-block mb-4">
+                <svg class="w-20 h-20 text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                {% if language == 'ar' %}
+                    تم اكتشافك!
+                {% else %}
+                    You've Been Caught!
+                {% endif %}
+            </h1>
+            <p class="text-red-100 text-lg">
+                {% if language == 'ar' %}
+                    هذا كان اختبار محاكاة تصيد احتيالي
+                {% else %}
+                    This Was a Phishing Simulation Test
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Main Content Card -->
+        <div class="bg-white rounded-b-2xl card-shadow overflow-hidden">
+
+            <!-- Employee Greeting -->
+            <div class="bg-orange-50 border-b border-orange-200 p-6">
+                <p class="text-orange-800 text-lg">
+                    {% if language == 'ar' %}
+                        مرحباً <strong>{{ employee_name }}</strong>،
+                    {% else %}
+                        Hello <strong>{{ employee_name }}</strong>,
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Educational Message -->
+            <div class="p-6 md:p-8">
+                <div class="prose max-w-none">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-lg">
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mt-0.5 {% if language == 'ar' %}ml-3{% else %}mr-3{% endif %} flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div class="text-blue-800">
+                                {{ message|linebreaks }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attack Information -->
+                <div class="mb-8">
+                    <div class="flex flex-wrap gap-3 mb-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                            <svg class="w-4 h-4 {% if language == 'ar' %}ml-1{% else %}mr-1{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                            </svg>
+                            {% if language == 'ar' %}نوع الهجوم:{% else %}Attack Type:{% endif %} {{ attack_vector }}
+                        </span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-amber-100 text-amber-800">
+                            <svg class="w-4 h-4 {% if language == 'ar' %}ml-1{% else %}mr-1{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            {% if language == 'ar' %}مستوى الصعوبة:{% else %}Difficulty:{% endif %} {{ difficulty }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Red Flags Section -->
+                {% if red_flags %}
+                <div class="bg-red-50 rounded-xl p-6 mb-8">
+                    <h2 class="text-xl font-bold text-red-800 mb-4 flex items-center">
+                        <svg class="w-6 h-6 {% if language == 'ar' %}ml-2{% else %}mr-2{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                        </svg>
+                        {% if language == 'ar' %}
+                            العلامات التحذيرية التي كان يجب ملاحظتها
+                        {% else %}
+                            Red Flags You Should Have Noticed
+                        {% endif %}
+                    </h2>
+                    <ul class="space-y-3">
+                        {% for flag in red_flags %}
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-6 h-6 bg-red-200 rounded-full flex items-center justify-center {% if language == 'ar' %}ml-3{% else %}mr-3{% endif %} mt-0.5">
+                                <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01"/>
+                                </svg>
+                            </span>
+                            <span class="text-red-700">{{ flag }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- What Happens Next -->
+                <div class="bg-green-50 rounded-xl p-6 mb-8">
+                    <h2 class="text-xl font-bold text-green-800 mb-4 flex items-center">
+                        <svg class="w-6 h-6 {% if language == 'ar' %}ml-2{% else %}mr-2{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        {% if language == 'ar' %}
+                            ماذا بعد؟
+                        {% else %}
+                            What Happens Next?
+                        {% endif %}
+                    </h2>
+                    <ul class="space-y-2 text-green-700">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 {% if language == 'ar' %}ml-2{% else %}mr-2{% endif %} text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            {% if language == 'ar' %}
+                                هذا كان تدريباً تعليمياً فقط - لم يتم اختراق أي بيانات
+                            {% else %}
+                                This was just a training exercise - no data was compromised
+                            {% endif %}
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 {% if language == 'ar' %}ml-2{% else %}mr-2{% endif %} text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            {% if language == 'ar' %}
+                                تم تسجيل تفاعلك لأغراض التدريب
+                            {% else %}
+                                Your interaction has been logged for training purposes
+                            {% endif %}
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 {% if language == 'ar' %}ml-2{% else %}mr-2{% endif %} text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            {% if language == 'ar' %}
+                                قد يتواصل معك مسؤول الأمان لتقديم تدريب إضافي
+                            {% else %}
+                                Your security team may reach out with additional training
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tips Section -->
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-6 h-6 {% if language == 'ar' %}ml-2{% else %}mr-2{% endif %}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                        {% if language == 'ar' %}
+                            نصائح لحماية نفسك
+                        {% else %}
+                            Tips to Protect Yourself
+                        {% endif %}
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center {% if language == 'ar' %}ml-3{% else %}mr-3{% endif %}">
+                                <span class="text-gray-600 font-bold">1</span>
+                            </span>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    {% if language == 'ar' %}تحقق من المرسل{% else %}Verify the sender{% endif %}
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    {% if language == 'ar' %}
+                                        تأكد من عنوان البريد الإلكتروني للمرسل
+                                    {% else %}
+                                        Check the sender's email address carefully
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center {% if language == 'ar' %}ml-3{% else %}mr-3{% endif %}">
+                                <span class="text-gray-600 font-bold">2</span>
+                            </span>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    {% if language == 'ar' %}حوم فوق الروابط{% else %}Hover over links{% endif %}
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    {% if language == 'ar' %}
+                                        تحقق من الرابط قبل النقر عليه
+                                    {% else %}
+                                        Check the URL before clicking any link
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center {% if language == 'ar' %}ml-3{% else %}mr-3{% endif %}">
+                                <span class="text-gray-600 font-bold">3</span>
+                            </span>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    {% if language == 'ar' %}احذر من الاستعجال{% else %}Beware of urgency{% endif %}
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    {% if language == 'ar' %}
+                                        رسائل التصيد غالباً ما تخلق شعوراً بالإلحاح
+                                    {% else %}
+                                        Phishing emails often create a sense of urgency
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center {% if language == 'ar' %}ml-3{% else %}mr-3{% endif %}">
+                                <span class="text-gray-600 font-bold">4</span>
+                            </span>
+                            <div>
+                                <p class="font-medium text-gray-800">
+                                    {% if language == 'ar' %}أبلغ عن المشبوه{% else %}Report suspicious emails{% endif %}
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    {% if language == 'ar' %}
+                                        عند الشك، أبلغ فريق الأمان
+                                    {% else %}
+                                        When in doubt, report to your security team
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-100 px-6 py-4 border-t">
+                <p class="text-center text-gray-600 text-sm">
+                    {% if language == 'ar' %}
+                        هذه المحاكاة جزء من حملة <strong>{{ campaign_name }}</strong>
+                    {% else %}
+                        This simulation is part of the <strong>{{ campaign_name }}</strong> campaign
+                    {% endif %}
+                </p>
+                <p class="text-center text-gray-500 text-xs mt-2">
+                    Powered by PhishAware - Security Awareness Platform
+                </p>
+            </div>
+        </div>
+
+        <!-- Language Toggle (optional) -->
+        <div class="mt-4 text-center">
+            {% if language == 'ar' %}
+            <a href="?lang=en" class="text-gray-600 hover:text-gray-800 text-sm underline">
+                View in English
+            </a>
+            {% else %}
+            <a href="?lang=ar" class="text-gray-600 hover:text-gray-800 text-sm underline">
+                عرض بالعربية
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
