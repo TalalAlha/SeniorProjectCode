@@ -44,7 +44,12 @@ class HasCompanyAccess(permissions.BasePermission):
     """Permission class to check if user has access to company features."""
 
     def has_permission(self, request, view):
-        return request.user and request.user.is_authenticated and request.user.has_company_access
+        if not request.user or not request.user.is_authenticated:
+            return False
+        # Super admins have access to all company features
+        if request.user.is_super_admin:
+            return True
+        return request.user.has_company_access
 
 
 class IsSameCompany(permissions.BasePermission):
