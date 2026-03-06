@@ -83,19 +83,6 @@ class EmailTemplate(models.Model):
         default='MEDIUM'
     )
 
-    # AI Generation
-    is_ai_generated = models.BooleanField(_('AI generated'), default=False)
-    ai_model_used = models.CharField(
-        _('AI model used'),
-        max_length=100,
-        blank=True,
-        help_text=_('Name of the AI model used for generation')
-    )
-    generation_prompt = models.TextField(
-        _('generation prompt'),
-        blank=True,
-        help_text=_('Prompt used to generate this email')
-    )
 
     # Red Flags for Learning
     red_flags = models.JSONField(
@@ -141,7 +128,6 @@ class EmailTemplate(models.Model):
         indexes = [
             models.Index(fields=['campaign', 'email_type']),
             models.Index(fields=['email_type', 'difficulty']),
-            models.Index(fields=['is_ai_generated']),
         ]
 
     def __str__(self):
@@ -225,6 +211,24 @@ class QuizQuestion(models.Model):
         _('requires training'),
         default=False,
         help_text=_('Flag if employee needs additional training on this type')
+    )
+    selected_flags = models.JSONField(
+        _('selected red flags'),
+        default=list,
+        blank=True,
+        help_text=_('List of red flag IDs the employee selected when answering PHISHING')
+    )
+
+    # Red flag scoring (set by frontend when employee submits a PHISHING answer)
+    flag_score = models.IntegerField(
+        _('flag score'),
+        default=0,
+        help_text=_('Points earned from red flag selections (correct flags minus penalties)')
+    )
+    flag_max_score = models.IntegerField(
+        _('flag max score'),
+        default=0,
+        help_text=_('Maximum possible points from red flags for this question')
     )
 
     # Timestamps

@@ -1,0 +1,28 @@
+{
+  "vocab_size_en": 1449,
+  "vocab_size_ar": 860,
+  "embedding_dim": 256,
+  "hidden_dim": 512,
+  "num_layers": 3,
+  "dropout": 0.3,
+  "max_seq_len_en": 120,
+  "max_seq_len_ar": 100,
+  "labels": [
+    "[LEGIT]",
+    "[PHISH]"
+  ],
+  "label_indices_en": {
+    "[LEGIT]": 25,
+    "[PHISH]": 26
+  },
+  "label_indices_ar": {
+    "[LEGIT]": 10,
+    "[PHISH]": 11
+  },
+  "training_info": {
+    "en_dataset": 14000,
+    "ar_dataset": 10000,
+    "en_final_loss": 0.19879009191869595,
+    "ar_final_loss": 0.2812148275283667
+  }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to PhishAware</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+    .wrapper { max-width: 600px; margin: 40px auto; padding: 0 16px; }
+
+    .card { background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+
+    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 48px 40px 40px; text-align: center; }
+    .logo { display: inline-block; background: rgba(255,255,255,0.15); border-radius: 50%; width: 72px; height: 72px; line-height: 72px; font-size: 32px; margin-bottom: 16px; }
+    .header h1 { color: #ffffff; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+    .header p { color: rgba(255,255,255,0.85); font-size: 15px; margin-top: 6px; }
+
+    .body { padding: 40px; }
+    .greeting { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: #1a1a2e; }
+    .text { font-size: 15px; line-height: 1.7; color: #4a4a6a; margin-bottom: 20px; }
+
+    .info-box { background: #f0f4ff; border-left: 4px solid #667eea; border-radius: 8px; padding: 20px; margin: 24px 0; }
+    .info-box p { font-size: 14px; color: #4a4a6a; line-height: 1.6; }
+    .info-box strong { color: #1a1a2e; }
+
+    .btn-wrap { text-align: center; margin: 32px 0; }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    }
+
+    .steps { background: #f7f8fc; border-radius: 8px; padding: 24px; margin: 24px 0; }
+    .steps h3 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 14px; }
+    .steps ol { padding-left: 20px; }
+    .steps li { font-size: 14px; color: #4a4a6a; line-height: 1.8; }
+
+    .footer { background: #f7f8fc; padding: 24px 40px; text-align: center; border-top: 1px solid #e8eaf0; }
+    .footer p { font-size: 12px; color: #9999bb; line-height: 1.6; }
+    .footer a { color: #667eea; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+
+      <!-- Header -->
+      <div class="header">
+        <div class="logo">🛡️</div>
+        <h1>Welcome to PhishAware!</h1>
+        <p>Your company is now protected</p>
+      </div>
+
+      <!-- Body -->
+      <div class="body">
+        <p class="greeting">Hi {{ admin_name }},</p>
+
+        <p class="text">
+          Congratulations! <strong>{{ company_name }}</strong> is now registered on PhishAware.
+          Your admin account is active and ready to go.
+        </p>
+
+        <!-- Account info -->
+        <div class="info-box">
+          <p>
+            📧 <strong>Email:</strong> {{ admin_email }}<br />
+            👤 <strong>Role:</strong> Company Administrator<br />
+            🏢 <strong>Company:</strong> {{ company_name }}
+          </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="btn-wrap">
+          <a href="{{ login_url }}" class="btn">Log In to Your Dashboard →</a>
+        </div>
+
+        <!-- Next steps -->
+        <div class="steps">
+          <h3>🚀 Getting started</h3>
+          <ol>
+            <li>Log in to your dashboard</li>
+            <li>Invite your team from the <strong>Employees</strong> section</li>
+            <li>Create your first phishing simulation campaign</li>
+            <li>Assign security awareness training to your team</li>
+          </ol>
+        </div>
+
+        <p class="text">
+          Need help? Check out our <a href="{{ frontend_url }}" style="color:#667eea;text-decoration:none;">documentation</a>
+          or reach us at <a href="mailto:{{ support_email }}" style="color:#667eea;text-decoration:none;">{{ support_email }}</a>.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>
+          This email was sent by PhishAware &bull; <a href="{{ frontend_url }}">Visit platform</a><br />
+          © 2026 PhishAware. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
